@@ -1,4 +1,4 @@
-import {SIGN_UP_SUCCESS, SIGN_UP_ERROR, LOGOUT} from "../actionsType";
+import {SIGN_UP_SUCCESS, SIGN_UP_ERROR, LOGOUT, CHANGE_THEME} from "../actionsType";
 import {signUp} from "../../api/auth";
 import store, {getStore} from "../../store";
 
@@ -36,5 +36,12 @@ export const isAuth=(payload)=>dispatch=>{
 export const logout=(payload)=>dispatch=>{
     dispatch({
         type:LOGOUT,
+    })
+}
+export const changeTheme=(payload)=>dispatch=>{
+    console.log('payload',payload)
+    dispatch({
+        type:CHANGE_THEME,
+        payload:payload
     })
 }

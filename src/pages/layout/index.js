@@ -4,22 +4,19 @@ import React, {Component, useEffect, useState} from "react";
 import {connect, useDispatch, useSelector} from "react-redux";
 
 import {isAuth, logout} from "../../redux/actions";
+import {Button} from "../../style/theme";
+import {LogoutButton} from "./style";
+import Header from "./header";
 
 const MainPage=()=>{
     const state = useSelector((state) => state);
     console.log('state',state)
-    let {auth}=state;
-    let [login,setLogin]=useState(auth);
-    useEffect(()=>{
-        login?  dispatch(logout()):dispatch(isAuth())
-    },[login])
     const dispatch = useDispatch();
-
    let {title}=state.infoUser;
     return(
      <>
+         <Header/>
          <p>{title}</p>
-         <button onClick={()=>setLogin(!login)}>{auth?'logout':'login'}</button>
 
     </>
 

@@ -1,7 +1,8 @@
-import {LOGOUT, SIGN_UP_ERROR, SIGN_UP_SUCCESS} from "../actionsType";
+import {CHANGE_THEME, LOGOUT, SIGN_UP_ERROR, SIGN_UP_SUCCESS} from "../actionsType";
 
 const initialState={
     infoUser:{},
+    theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches?'light':'black',
     auth:false,
     isErrorAuth:false,
 
@@ -17,6 +18,9 @@ const initialState={
         }
         case LOGOUT:{
             return {...state, infoUser: {}, auth: false}
+        }
+        case CHANGE_THEME:{
+            return {...state,theme: action.payload}
         }
         case 'ADD':{
             return 'olga'

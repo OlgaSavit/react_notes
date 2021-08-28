@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import RegistrationPage from "./pages/auth/RegistrationPage";
 
 const RouterComponent=()=>{
+
     const state = useSelector((state) => state);
     return(
         <Switch>
@@ -15,10 +16,9 @@ const RouterComponent=()=>{
                 {
                     state.auth? <MainPage/>:<RegistrationPage/>
                 }
-
             </Route>
             <Route path='/catalog'>
-                <CatalogPage/>
+                {state.auth? <CatalogPage/>:<RegistrationPage/>}
             </Route>
         </Switch>
 
