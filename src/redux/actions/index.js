@@ -26,7 +26,7 @@ import store, {getStore} from "../../store";
 export const isAuth=(payload)=>dispatch=>{
     signUp()
         .then((response) => {
-            console.log(' response.data', 777);
+            console.log(' response.data', response.data);
             return response.data
         })
          .then(data =>  dispatch({
