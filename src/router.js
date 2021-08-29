@@ -10,6 +10,7 @@ import RegistrationPage from "./pages/auth/RegistrationPage";
 const RouterComponent=()=>{
 
     const state = useSelector((state) => state);
+    console.log('state',state)
     return(
         <Switch>
             <Route path='/' exact>

@@ -12,11 +12,12 @@ const MainPage=()=>{
     const state = useSelector((state) => state);
     console.log('state',state)
     const dispatch = useDispatch();
-   let infoUser=state.infoUser;
+   let {email,firstName}=state.infoUser;
     return(
      <>
          <Header/>
-         <p>{infoUser}</p>
+         <p>{email}</p>
+         <p>{firstName}</p>
 
     </>
 

@@ -26,14 +26,18 @@ import store, {getStore} from "../../store";
 export const isAuth=(payload)=>dispatch=>{
     signUp()
         .then((response) => {
-            console.log(' response.data', response.data);
-            return response.data
-        })
-         .then(data =>  dispatch({
+                return response.data
+        },error=>{
+            dispatch({
+                type:SIGN_UP_ERROR,
+                payload:true
+             })  
+        }).then(data =>  dispatch({
             type:SIGN_UP_SUCCESS,
             payload:data
          })
      )
+        
     // return{ type:SIGN_UP_SUCCESS, payload:payload}
 }
 export const logout=(payload)=>dispatch=>{
