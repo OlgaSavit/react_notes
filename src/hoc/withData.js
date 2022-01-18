@@ -1,4 +1,4 @@
-import Spinner from "../services/Spinner";
+import  {FullSpinner} from "../services/Spinner";
 import {Component} from "react";
 
 function withData (View){
@@ -8,7 +8,7 @@ function withData (View){
         }
         render(){
             return <>
-                {    this.state.load?<Spinner/>:<View {...this.props} />}
+                {    this.state.load?<FullSpinner/>:<View {...this.props} />}
                 <button onClick={()=>{this.setState({load:false})}}>load</button>
             </>
         }

@@ -1,26 +1,31 @@
+import React, {Suspense} from "react";
 import {ErrorBoundary} from "./services/ErrorBoundary";
-import React, {useEffect} from "react";
-import {Provider, useSelector} from "react-redux";
+import {Provider} from "react-redux";
 import store from "./store";
-import {
-    BrowserRouter as Router,
-} from "react-router-dom";
+import {ChakraProvider, Container} from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/react"
 import RouterComponent from "./router";
-import {ThemeProvider} from "styled-components";
-import {GlobalStyle, theme} from "./style/theme";
-function App() {
+import  {FullSpinner} from "./services/Spinner";
+import {ToastContainer} from "react-toastify";
+const colors = {
+    brand: {
+        900: "#1a365d",
+        800: "#153e75",
+        700: "#2a69ac",
+    },
+}
+const theme = extendTheme({ colors })
 
+function App() {
   return (
           <Provider store={store}>
               <ErrorBoundary>
-                  <ThemeProvider theme={theme}>
-                    <ThemeComponent/>
-                      <Router>
-                          <RouterComponent></RouterComponent>
-                          {/*<CatalogPage text={'CatalogPage'} />*/}
-                      </Router>
-                  </ThemeProvider>
-
+                  <ChakraProvider theme={theme}>
+                      <Suspense fallback={<FullSpinner />}>
+                          <RouterComponent/>
+                          <ToastContainer type="success"/>
+                      </Suspense>
+                  </ChakraProvider>
               </ErrorBoundary>
           </Provider>
 
@@ -30,10 +35,3 @@ function App() {
 
 export default App;
 
-const ThemeComponent=()=>{
-    const state = useSelector((state) => state);
-    let {theme}=state;
-    return(
-        <GlobalStyle light={theme==='light'?true:false}/>
-    )
-}

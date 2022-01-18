@@ -1,13 +1,11 @@
 import {HeaderContainer, LogoutButton} from "./style";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {isAuth, logout, changeTheme} from "../../redux/actions";
-import {Button, Image, Title, TransparentButton} from "../../style/theme";
+import {isAuth, logout, changeTheme} from "../../redux/actions/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import sun from '../../img/svg/sun.svg'
-import moon from '../../img/svg/moon.svg'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
+import {Box} from "@chakra-ui/layout";
 const Header =()=>{
 
     const state = useSelector((state) => state);
@@ -19,16 +17,16 @@ const Header =()=>{
     },[login])
     const dispatch = useDispatch();
     return<HeaderContainer>
-        <Title>Notes</Title>
-        <div style={{display:'flex',alignItems:'center'}}>
-            <TransparentButton onClick={()=>{dispatch(changeTheme(theme==='light'?'black':'light'))}}>
+        <h1>Notes</h1>
+        <Box bg="tomato" w="100%" p={4} color="white">
+            <button onClick={()=>{dispatch(changeTheme(theme==='light'?'black':'light'))}}>
                 {
                     theme==='light'?  <FontAwesomeIcon icon={faMoon} size='lg' color='white'/>: <FontAwesomeIcon icon={faSun} size='lg' color='yellow'/>
                 }
 
-            </TransparentButton>
-            <LogoutButton onClick={()=>setLogin(!login)}>{auth?'logout':'login'}</LogoutButton>
-        </div>
+            </button>
+            <button onClick={()=>setLogin(!login)}>{auth?'logout':'login'}</button>
+        </Box>
     </HeaderContainer>
 }
 export default Header;

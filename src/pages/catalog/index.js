@@ -1,16 +1,14 @@
-import Spinner from "../../services/Spinner";
-import React, {Component} from "react";
-import {withData} from '../../hoc/withData'
+import React from "react";
 
-const CatalogPage=(props)=>{
+const CatalogPage=()=>{
 
-    let {text}=props;
     return(
         <>
-            <p>{text}</p>
+            <p>My tasks</p>
+
         </>
 
     )
 }
 
-export default withData(CatalogPage)
+export default CatalogPage

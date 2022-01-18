@@ -1,34 +1,11 @@
-import {CHANGE_THEME, LOGOUT, SIGN_UP_ERROR, SIGN_UP_SUCCESS} from "../actionsType";
+import { combineReducers } from 'redux';
+import auth from "./auth";
+import settings from "./settings";
+import tasks from "./tasks";
 
-const initialState={
-    infoUser:{},
-    theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches?'light':'black',
-    auth:false,
-    isErrorAuth:false,
 
-}
- const reducer=(state=initialState,action)=>{
-    switch (action.type){
-        case SIGN_UP_SUCCESS:{
-            return {...state, auth: action.payload?true:false, infoUser:action.payload}
-        }
-        case SIGN_UP_ERROR:{
-            console.log(action)
-            return {...state, isErrorAuth: action.payload}
-        }
-        case LOGOUT:{
-            return {...state, infoUser: {}, auth: false}
-        }
-        case CHANGE_THEME:{
-            return {...state,theme: action.payload}
-        }
-        case 'ADD':{
-            return 'olga'
-        }
-        case 'DEC':{
-            return state-1
-        }
-        default: return  state
-    }
- }
- export {reducer}
+export default combineReducers({
+    auth,
+    settings,
+    tasks
+});
